@@ -17,7 +17,7 @@ int t;
 string nums;
 
 string check(string s){
-    foru(i, 1, s.size() - 1) if(abs(s[i] - s[i - 1]) > 1) return "NO";
+    foru(i, 0, s.size() - 1) if(abs(s[i] - s[i - 1]) != 1) return "NO";
     return "YES";
 }
 

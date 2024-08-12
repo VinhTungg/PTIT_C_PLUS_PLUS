@@ -20,7 +20,7 @@ int main(){
     cin >> t;
     while(t--){
     	ll n; cin >> n;
-        for(ll i = 2; i <= n; ++i){
+        for(ll i = 2; i * i <= n; ++i){
             while(n % i == 0){
                 n /= i;
                 cout << i << ' ';

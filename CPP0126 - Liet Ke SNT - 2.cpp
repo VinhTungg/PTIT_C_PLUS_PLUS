@@ -15,16 +15,16 @@
 using namespace std;
 
 void sieve(int l, int r){
-    int nt[r - l + 1];
-    memset(nt, 1, sizeof(nt));
-    nt[0] = nt[1] = 0;
-    for(int i = 2; i <= sqrt(r); ++i){
-        for(int j = max(i * i, (l + i - 1) / i * i); j <= r; j += i){
-            nt[j - l] = 0;
+    int L = min(l, r);
+    int R = max(l, r);
+    vector<bool> nt(R - L + 1, 1);
+    for(ll i = 2; i <= sqrt(R); ++i){
+        for(ll j = max(i * i, (L + i - 1) / i * i); j <= R; j += i){
+            nt[j - L] = 0;
         }
     }
-    for(int i = max(2, l); i <= r; i++){
-        if(nt[i - l]) cout << i << ' ';
+    for(ll i = max(2, L); i <= R; i++){
+        if(nt[i - L]) cout << i << ' ';
     }
 }
 
@@ -36,5 +36,6 @@ int main(){
     	int l, r;
         cin >> l >> r;
         sieve(l, r);
+        cout << endl;
 	}
 }

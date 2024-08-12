@@ -20,7 +20,7 @@ int main(){
     cin >> t;
     while(t--){
     	ll n; cin >> n;
-        int ans;
+        ll ans;
         foru(i, 2, n){
             while(n % i == 0){
                 ans = i;
