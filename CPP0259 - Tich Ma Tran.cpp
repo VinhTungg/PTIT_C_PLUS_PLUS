@@ -17,22 +17,22 @@ using namespace std;
 int main(){
     boost;
     int t = 1;
-    cin >> t;
+    //cin >> t;
     while(t--){
         int n, m, p; cin >> n >> m >> p;
-        int a[n + 5][m + 5], b[m + 5][p + 5];
+        int a[n + 5][m + 5], b[m + 5][p + 5], c[n + 5][p + 5] = {};
         foru(i, 0, n - 1) foru(j, 0, m - 1) cin >> a[i][j];
         foru(i, 0, m - 1) foru(j, 0, p - 1) cin >> b[i][j];
         foru(i, 0, n - 1){
-             ll sum = 0;
-            int cnt = n;
-            int idx = 1;
-            while(cnt--)
-            {
-                sum = 0;
-                foru(j, 0, m - 1) sum += a[i][j] * b[j][idx];
-                cout << sum << ' ';
-                ++idx;
+            foru(j, 0, p - 1){
+                foru(t, 0, m - 1){
+                    c[i][j] += 1LL * a[i][t] * b[t][j];
+                }
+            }
+        }
+        foru(i, 0, n - 1){
+            foru(j, 0, p - 1) {
+                cout << c[i][j] << ' ';
             }
             cout << endl;
         }
