@@ -13,7 +13,7 @@
 #define MOD 1000000007
 
 using namespace std;
-int idx;
+int idx = 1;
 struct NhanVien{
     string name, sex, address, id;
     int ngaysinh, thangsinh, namsinh, ngayky, thangky, namky, ma;
@@ -41,7 +41,6 @@ int main(){
     struct NhanVien ds[50];
     int N,i;
     cin >> N;
-    idx = 1;
     for(i = 0; i < N; i++) nhap(ds[i]);
     inds(ds,N);
     return 0;

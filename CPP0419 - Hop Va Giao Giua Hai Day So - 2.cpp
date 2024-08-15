@@ -19,13 +19,25 @@ int main(){
     int t = 1;
     cin >> t;
     while(t--){
-        int n; cin >> n;
-        vector<int> nums(n);
-        for(auto &num : nums) cin >> num;
-        int ans = 0;
+        int n, m;
+        cin >> n >> m;
+        set<int> a, b, hop, giao;
         foru(i, 0, n - 1){
-            ans = max(ans, nums[i]);
+            int x; cin >> x;
+            a.insert(x);
+            hop.insert(x);
         }
-        cout << ans << '\n';
+        foru(i, 0, m - 1){
+            int x; cin >> x;
+            b.insert(x);
+            hop.insert(x);
+        }
+        for(auto &x : hop){
+            if(a.find(x) != a.end() && b.find(x) != b.end()) giao.insert(x);
+            cout << x << ' ';
+        }
+        cout << endl;
+        for(auto &x : giao) cout << x << ' ';
+        cout << endl;
     }
 }

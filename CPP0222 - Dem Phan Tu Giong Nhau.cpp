@@ -14,28 +14,22 @@
 
 using namespace std;
 
-int binary_search(int n, int x, vector<int> &a){
-    int l = 0, r = n - 1;
-    while(l <= r){
-        int mid = (l + r) / 2;
-        if(a[mid] == x) return 1;
-        if(a[mid] > x) r = mid - 1;
-        else l = mid + 1;
-    }
-    return -1;
-}
- 
 int main(){
     boost;
     int t = 1;
     cin >> t;
     while(t--){
-        int n, k;
-        cin >> n >> k;
-        vector<int> a(n);
-        for(auto &num : a) cin >> num;
-        sort(all(a));
-        auto tmp = binary_search(n, k, a);
-        cout << tmp << endl;
+        int n; cin >> n;
+        int a[n + 1][n + 1]; 
+        unordered_map<int, int> mp;
+        foru(i, 0, n - 1){
+            foru(j, 0, n - 1){
+                cin >> a[i][j];
+                if(mp[a[i][j]] == i) ++mp[a[i][j]];
+            }
+        }
+        int ans = 0;
+        for(auto &cnt : mp) if(cnt.second == n) ++ans;
+        cout << ans << endl;
     }
 }

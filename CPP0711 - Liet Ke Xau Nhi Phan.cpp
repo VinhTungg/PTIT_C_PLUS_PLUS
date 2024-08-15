@@ -13,16 +13,18 @@
 #define MOD 1000000007
 
 using namespace std;
+int n;
+int X[21] = {};
+bool check = true;
 
-int binary_search(int n, int x, vector<int> &a){
-    int l = 0, r = n - 1;
-    while(l <= r){
-        int mid = (l + r) / 2;
-        if(a[mid] == x) return 1;
-        if(a[mid] > x) r = mid - 1;
-        else l = mid + 1;
+void sinh(){
+    int i = n;
+    while(i > 0 && X[i] == 1){
+        --i;
     }
-    return -1;
+    X[i] = 1;
+    if(i > 0) foru(j, i + 1, n) X[j] = 0;
+    else check = false;
 }
  
 int main(){
@@ -30,12 +32,14 @@ int main(){
     int t = 1;
     cin >> t;
     while(t--){
-        int n, k;
-        cin >> n >> k;
-        vector<int> a(n);
-        for(auto &num : a) cin >> num;
-        sort(all(a));
-        auto tmp = binary_search(n, k, a);
-        cout << tmp << endl;
+        cin >> n;
+        memset(X, 0, sizeof(X));
+        check = true;
+        while(check){
+            foru(i, 1, n) cout << X[i];
+            cout << ' ';
+            sinh();
+        }
+        cout << endl;
     }
 }

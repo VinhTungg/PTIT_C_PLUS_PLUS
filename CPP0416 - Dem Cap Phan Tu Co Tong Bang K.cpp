@@ -20,20 +20,13 @@ int main(){
     cin >> t;
     while(t--){
         ll n, sum; cin >> n >> sum;
-        vector<ll> Nums(n), Cnt(1005, 0);
+        vector<ll> Nums(n);
         for(auto &Num : Nums){
             cin >> Num;
-            Cnt[Num]++;
         }
         ll ans = 0;
-        foru(i, 0, n - 1){
-            if(sum - Nums[i] < 0) continue;
-            if(Cnt[Nums[i]] && Cnt[sum - Nums[i]]){
-                if(Nums[i] == Nums[sum - Nums[i]]) ans += Cnt[Nums[i]];
-                else ans += (Cnt[Nums[i]] * Cnt[sum - Nums[i]]);
-                Cnt[Nums[i]] = 0;
-                Cnt[sum - Nums[i]] = 0;
-            }
+        foru(i, 0, n - 2){
+            foru(j, i + 1, n - 1) if(Nums[i] + Nums[j] == sum) ++ans;
         }
         cout << ans << endl;
     }

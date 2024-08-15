@@ -13,18 +13,21 @@
 #define MOD 1000000007
 
 using namespace std;
- 
+
 int main(){
     boost;
     int t = 1;
-    cin >> t;
+    //cin >> t;
     while(t--){
-        int n, k;
-        cin >> n >> k;
-        vector<int> a(n);
-        for(auto &num : a) cin >> num;
-        sort(all(a), greater<int>());
-        foru(i, 0, k - 1) cout << a[i] << ' ';
-        cout << endl;
+        int n; cin >> n;
+        int a[n][3];
+        int cnt = 0;
+        foru(i, 0, n - 1) foru(j, 0, 2) cin >> a[i][j];
+        foru(i, 0, n - 1){
+            int tmp = 0;
+            foru(j, 0, 2) if(a[i][j]) ++tmp;
+            if(tmp > 1) ++cnt;
+        }
+        cout << cnt;
     }
 }

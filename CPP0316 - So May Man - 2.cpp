@@ -14,28 +14,23 @@
 
 using namespace std;
 
-int binary_search(int n, int x, vector<int> &a){
-    int l = 0, r = n - 1;
-    while(l <= r){
-        int mid = (l + r) / 2;
-        if(a[mid] == x) return 1;
-        if(a[mid] > x) r = mid - 1;
-        else l = mid + 1;
+int check(string s){
+    int sum;
+    while(s.size() > 1){
+        sum = 0;
+        foru(i, 0, s.size() - 1)
+            sum += (s[i] - '0');
+        s = to_string(sum); 
     }
-    return -1;
+    return sum == 9 || s[0] == '9';
 }
- 
+
 int main(){
     boost;
     int t = 1;
     cin >> t;
     while(t--){
-        int n, k;
-        cin >> n >> k;
-        vector<int> a(n);
-        for(auto &num : a) cin >> num;
-        sort(all(a));
-        auto tmp = binary_search(n, k, a);
-        cout << tmp << endl;
+        string s; cin >> s;
+        cout << check(s) << endl;
     }
 }

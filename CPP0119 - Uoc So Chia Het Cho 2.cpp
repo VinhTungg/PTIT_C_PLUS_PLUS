@@ -14,28 +14,25 @@
 
 using namespace std;
 
-int binary_search(int n, int x, vector<int> &a){
-    int l = 0, r = n - 1;
-    while(l <= r){
-        int mid = (l + r) / 2;
-        if(a[mid] == x) return 1;
-        if(a[mid] > x) r = mid - 1;
-        else l = mid + 1;
+int calc(int n){
+    int cnt = 0;
+    foru(i, 2, sqrt(n)){
+        if(n % i == 0){
+            if(!(i & 1)) ++cnt;
+            if(!((n / i) & 1)) ++cnt;
+        }
     }
-    return -1;
+    if((int)sqrt(n) * (int)sqrt(n) == n && !((int)sqrt(n) & 1)) --cnt;
+    if(!(n & 1)) ++cnt;
+    return cnt;
 }
- 
+
 int main(){
     boost;
     int t = 1;
     cin >> t;
     while(t--){
-        int n, k;
-        cin >> n >> k;
-        vector<int> a(n);
-        for(auto &num : a) cin >> num;
-        sort(all(a));
-        auto tmp = binary_search(n, k, a);
-        cout << tmp << endl;
+        int n; cin >> n;
+        cout << calc(n) << endl;
     }
 }

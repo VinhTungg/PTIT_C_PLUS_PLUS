@@ -29,7 +29,11 @@ int main(){
         for(auto &num : a){
             cin >> num;
         }
-        sort(all(a), cmp);
-        cout << 1LL * a[0] + 1ll * a[1] << endl;
+        int res = 1e9;
+        foru(i, 0, n - 2){
+            foru(j, i + 1, n - 1)
+                if(abs(res) > abs(a[i] + a[j])) res = a[i] + a[j];
+        }
+        cout << res << endl;
     }
 }

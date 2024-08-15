@@ -13,29 +13,28 @@
 #define MOD 1000000007
 
 using namespace std;
+vector<bool> nt(1000006, true);
 
-int binary_search(int n, int x, vector<int> &a){
-    int l = 0, r = n - 1;
-    while(l <= r){
-        int mid = (l + r) / 2;
-        if(a[mid] == x) return 1;
-        if(a[mid] > x) r = mid - 1;
-        else l = mid + 1;
+void sieve(){
+    nt[0] = nt[1] = false;
+    foru(i, 1, 1000){
+        if(nt[i]){
+            for(int j = 2 * i; j <= 1000000; ++j) nt[j] = false;
+        }
     }
-    return -1;
 }
- 
+
 int main(){
     boost;
     int t = 1;
     cin >> t;
+    sieve();
     while(t--){
-        int n, k;
-        cin >> n >> k;
-        vector<int> a(n);
-        for(auto &num : a) cin >> num;
-        sort(all(a));
-        auto tmp = binary_search(n, k, a);
-        cout << tmp << endl;
+        int n; cin >> n;
+        int cnt = 0;
+        foru(i, 1, n){
+            if(__gcd(i, n) == 1) ++cnt;
+        }
+        cout << ((nt[cnt] == true) ? "1\n" : "0\n");
     }
 }

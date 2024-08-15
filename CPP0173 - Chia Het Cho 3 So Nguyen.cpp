@@ -14,28 +14,20 @@
 
 using namespace std;
 
-int binary_search(int n, int x, vector<int> &a){
-    int l = 0, r = n - 1;
-    while(l <= r){
-        int mid = (l + r) / 2;
-        if(a[mid] == x) return 1;
-        if(a[mid] > x) r = mid - 1;
-        else l = mid + 1;
-    }
-    return -1;
-}
- 
 int main(){
     boost;
     int t = 1;
     cin >> t;
     while(t--){
-        int n, k;
-        cin >> n >> k;
-        vector<int> a(n);
-        for(auto &num : a) cin >> num;
-        sort(all(a));
-        auto tmp = binary_search(n, k, a);
-        cout << tmp << endl;
+        int x, y, z, n; cin >> x >> y >> z >> n;
+        ll boiChung = x * y / __gcd(x, y);
+        boiChung = boiChung * z / __gcd(boiChung, (ll)z);
+        if(boiChung >= pow(10, n)) cout << "-1\n";
+        else{
+            ll tmp = pow(10,n - 1) / boiChung;
+            ll du = (ll)pow(10, n - 1) % boiChung;
+            boiChung *= tmp + (du != 0);
+            cout << boiChung << endl;
+        }
     }
 }

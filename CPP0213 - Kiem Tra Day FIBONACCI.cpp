@@ -13,29 +13,30 @@
 #define MOD 1000000007
 
 using namespace std;
+ll F[92];
+vector<bool> kt(1005, false);
 
-int binary_search(int n, int x, vector<int> &a){
-    int l = 0, r = n - 1;
-    while(l <= r){
-        int mid = (l + r) / 2;
-        if(a[mid] == x) return 1;
-        if(a[mid] > x) r = mid - 1;
-        else l = mid + 1;
+void init(){
+    F[0] = F[1] = 1;
+    kt[0] = kt[1] = true;
+    foru(i, 2, 16) {
+        F[i] = F[i - 1] + F[i - 2];
+        kt[F[i]] = true;
     }
-    return -1;
 }
- 
+
 int main(){
     boost;
     int t = 1;
     cin >> t;
+    init();
     while(t--){
-        int n, k;
-        cin >> n >> k;
-        vector<int> a(n);
-        for(auto &num : a) cin >> num;
-        sort(all(a));
-        auto tmp = binary_search(n, k, a);
-        cout << tmp << endl;
+        int n;
+        cin >> n;
+        vector<int> v(n), ans;
+        for(auto &num : v) cin >> num;
+        for(auto &num : v) if(kt[num]) ans.pb(num);
+        for(auto &num : ans) cout << num << ' ';
+        cout << endl;
     }
 }

@@ -26,7 +26,7 @@ int main(){
             cin >> num;
         }
         sort(all(a));
-        if(a[0] != a[1]) cout << "-1\n";
+        if(a[0] == a[1]) cout << "-1\n";
         else cout << a[0] << ' ' << a[1] << endl;
     }
 }

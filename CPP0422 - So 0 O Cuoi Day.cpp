@@ -20,10 +20,10 @@ int main(){
     cin >> t;
     while(t--){
         ll n; cin >> n;
-        vector<ll> a(n), b(n);
+        vector<ll> a, b;
         foru(i, 0, n - 1){
             ll x; cin >> x;
-            if(!x) b.push_back(x);
+            if(x == 0) b.push_back(x);
             else a.pb(x);
         }
         for(auto &num : a) cout << num << ' ';

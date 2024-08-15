@@ -13,23 +13,33 @@
 #define MOD 1000000007
 
 using namespace std;
- 
+
 int main(){
     boost;
     int t = 1;
     cin >> t;
     while(t--){
-        int n;
-        cin >> n;
+        int n; cin >> n;
         vector<int> v(n);
-        unordered_map<int, int> mp;
-        int l = 1e9, r = 0;
+        ll preleft = 0, preright = 0;
         for(auto &num : v){
             cin >> num;
-            l = min(l, num);
-            r = max(r, num);
-            mp[num]++;
+            preright += num;
         }
-        cout << r - l + 1 - mp.size() << endl;
+        int idx = -1;
+        preright -= v[0];
+        if(n == 1){
+            cout << 1;
+            continue;
+        }
+        foru(i, 1, n - 1){
+            preleft += v[i - 1];
+            preright -= v[i];
+            if(preleft == preright){
+                idx = i + 1;
+                break;
+            }
+        }
+        cout << idx << endl;
     }
 }

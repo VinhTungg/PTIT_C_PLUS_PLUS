@@ -14,28 +14,31 @@
 
 using namespace std;
 
-int binary_search(int n, int x, vector<int> &a){
-    int l = 0, r = n - 1;
-    while(l <= r){
-        int mid = (l + r) / 2;
-        if(a[mid] == x) return 1;
-        if(a[mid] > x) r = mid - 1;
-        else l = mid + 1;
+bool check(int l, int r, int v[]){
+    int idx = l;
+    foru(i, l, r - 1){
+        if(v[i] > v[i + 1]){
+            idx = i;
+            break;
+        }
     }
-    return -1;
+    foru(i, idx, r - 1){
+        if(v[i] < v[i + 1]) return false;
+    }
+    return true;
 }
- 
+
 int main(){
     boost;
     int t = 1;
     cin >> t;
     while(t--){
-        int n, k;
-        cin >> n >> k;
-        vector<int> a(n);
-        for(auto &num : a) cin >> num;
-        sort(all(a));
-        auto tmp = binary_search(n, k, a);
-        cout << tmp << endl;
+        int n;
+        cin >> n;
+        int v[n + 1];
+        foru(i, 0, n - 1) cin >> v[i];
+        int l, r; cin >> l >> r;
+        if(check(l, r, v)) puts("Yes");
+        else puts("No");
     }
 }

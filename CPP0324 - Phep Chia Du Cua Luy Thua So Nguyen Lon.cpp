@@ -14,18 +14,33 @@
 
 using namespace std;
 
+ll binPow(ll a, ll b, ll m){
+    if(b == 0) return 1;
+    if(b == 1) return a;
+    ll res = binPow(a, b / 2, m);
+    if(b & 1) res = (res * res * a) % m;
+    else res = (res * res) % m;
+    return res % m;
+}
+
+ll ChiaDu(string s, ll m){
+    ll ans = 0;
+    for(auto &c : s){
+        ans = (ans * 10 + (c - '0')) % m;
+    }
+    return ans;
+}
+
 int main(){
     boost;
     int t = 1;
     cin >> t;
     while(t--){
         string s; cin >> s;
-        int k; cin >> k;
-        int cnt[26] = {};
-        for(auto &c : s) cnt[c - 'a']++;
-        int ans = 0;
-        foru(i, 0, 25) if(!cnt[i]) ++ans;
-        if(ans <= k) cout << "1" << endl;
-        else cout << "0\n";
+        ll b; cin >> b;
+        ll m; cin >> m;
+        ll ans = ChiaDu(s, m);
+        ans = binPow(ans, b, m);
+        cout << ans << endl;
     }
 }

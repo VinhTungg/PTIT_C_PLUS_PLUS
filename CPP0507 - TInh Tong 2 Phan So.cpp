@@ -15,7 +15,7 @@
 using namespace std;
 
 struct PhanSo{
-    int tu, mau;
+    ll tu, mau;
 };
 
 void nhap (PhanSo &A){
