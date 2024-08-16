@@ -14,24 +14,21 @@
 
 using namespace std;
 
-bool cmp(pair<int, int> a, pair<int, int> b){
-    return a.fi < b.fi;
-}
-
 int main(){
     boost;
     int t = 1;
     cin >> t;
     while(t--){
-        int n, x;
-        cin >> n >> x;
-        vector<pair<int, int>> v(n);
-        for(auto &num : v) {
-            cin >> num.second;
-            num.first = abs(x - num.second);
+        int n, k; cin >> n >> k;
+        ll v[n];
+        for(auto &num : v) cin >> num;
+        sort(v, v + n);
+        string ans = "NO\n";
+        foru(i, 0, n - 3){
+            foru(j, i + 1, n - 2){
+                if(binary_search(v + j, v + n, (double)sqrt(1.0 * v[i] * v[i] + 1.0 * v[j] * v[j]))) ans = "YES\n";
+            }
         }
-        stable_sort(all(v), cmp);
-        for(auto &num : v) cout << num.second << ' ';
-        cout << endl;
+        cout << ans;
     }
 }

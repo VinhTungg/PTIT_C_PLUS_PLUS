@@ -14,24 +14,22 @@
 
 using namespace std;
 
-bool cmp(pair<int, int> a, pair<int, int> b){
-    return a.fi < b.fi;
-}
-
 int main(){
     boost;
     int t = 1;
     cin >> t;
     while(t--){
-        int n, x;
-        cin >> n >> x;
-        vector<pair<int, int>> v(n);
-        for(auto &num : v) {
-            cin >> num.second;
-            num.first = abs(x - num.second);
+        int n;
+        cin >> n;
+        int v[n + 5];
+        foru(i, 1, n) cin >> v[i];
+        sort(v + 1, v + n + 1);
+        int half = n / 2;
+        foru(i, 1, half){
+            cout << v[i] << ' ';
+            cout << v[i + half + (n & 1)] << ' ';
         }
-        stable_sort(all(v), cmp);
-        for(auto &num : v) cout << num.second << ' ';
+        if(n & 1) cout << v[n / 2 + 1];
         cout << endl;
     }
 }

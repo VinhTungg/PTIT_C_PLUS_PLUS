@@ -20,15 +20,17 @@ int main(){
     cin >> t;
     while(t--){
         string s; cin >> s;
-        ll ans = 0;
+        ll ans = 0, res = 0;
         foru(i, 0, s.size() - 1){
             ll tmp = 0;
+            ans = 0;
             while(isdigit(s[i])){
                 tmp = (tmp * 10 + s[i] - '0');
                 ans = max(ans, tmp);
                 ++i;
             }
+            res += ans;
         }
-        cout << ans << endl;
+        cout << res << endl;
     }
 }

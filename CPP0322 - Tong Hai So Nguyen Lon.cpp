@@ -19,20 +19,18 @@ string calc(string s1, string s2){
         s2.insert(0, s1.size() - s2.size(), '0');
     }
     string ans = "";
-    int nho = 0, hon = 0;
+    int nho = 0;
     ford(i, s1.size() - 1, 0){
         int tmp;
         tmp = (s1[i] - '0') + (s2[i] - '0') + nho;
-        if(i == 0){
-            if(tmp >= 10) hon = tmp / 10;
-        }
-        if(tmp >= 10){
-            nho = tmp / 10;
+        nho = 0;
+        while(tmp >= 10){
+            ++nho;
             tmp -= 10;
         }
         ans.insert(0, to_string(tmp));
-        if(hon) ans.insert(0, to_string(hon));
     }
+    if(nho) ans.insert(0, to_string(nho));
     return ans;
 }
 

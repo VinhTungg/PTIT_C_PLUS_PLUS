@@ -23,7 +23,7 @@ int main(){
         int cnt[26] = {};
         for(auto &c : s) cnt[c - 'a']++;
         int check = 1;
-        foru(i, 0, 25) if(cnt[i] >= s.size() - 2) check = 0;
+        foru(i, 0, 25) if(cnt[i] > (s.size() / 2) + (s.size() % 2)) check = 0;
         cout << check << endl;
     }
 }

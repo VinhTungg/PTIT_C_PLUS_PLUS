@@ -24,7 +24,7 @@ int main(){
         int cnt[10] = {};
         bool check = true;
         for(auto &c : s){
-            if(isalpha(c)){
+            if(isalpha(c) || s[0] == '0'){
                 check = false;
                 break;
             }

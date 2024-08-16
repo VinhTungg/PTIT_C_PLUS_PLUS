@@ -22,23 +22,16 @@ int main(){
         int n;
         cin >> n;
         int a[n + 1][n + 1], cot[n + 1] = {}, hang[n + 1] = {}, sum = 0;
+        int matrixSum = 0;
         foru(i, 1, n){
             foru(j, 1, n){
                 cin >> a[i][j];
                 hang[i] += a[i][j];
-                cot[i] += a[i][j];
+                cot[j] += a[i][j];
+                matrixSum += a[i][j];
                 sum = max({sum, hang[i], cot[j]});
             }
         }
-        int ans = 0;
-        foru(i, 1, n){
-            foru(j, 1, n){
-                int tmp = sum - max(hang[i], cot[j]);
-                hang[i] += tmp;
-                cot[j] += tmp;
-                ans += tmp;
-            }
-        }
-        cout << ans << endl;
+        cout << sum * n - matrixSum << endl;
     }
 }

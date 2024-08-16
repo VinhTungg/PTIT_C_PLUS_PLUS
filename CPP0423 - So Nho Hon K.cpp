@@ -13,22 +13,29 @@
 #define MOD 1000000007
 
 using namespace std;
-int x;
-bool cmp(int a, int b){
-    return abs(x - a) < abs(x - b);
-}
 
 int main(){
     boost;
     int t = 1;
     cin >> t;
     while(t--){
-        int n;
-        cin >> n >> x;
+        int n, k;
+        cin >> n >> k;
         vector<int> v(n);
-        for(auto &num : v) cin >> num;
-        sort(all(v), cmp);
-        for(auto &num : v) cout << num << ' ';
-        cout << endl;
+        int cntLess = 0;
+        int min_idx = INT_MAX, max_idx = INT_MIN;
+        for(auto &num : v){
+            cin >> num;
+            if(num <= k) ++cntLess;
+        }
+        int cntNum = 0;
+        foru(i, 0, cntLess - 1) if(v[i] <= k) ++cntNum;
+        int ans = cntNum;
+        foru(i, cntLess, v.size() - 1){
+            if(v[i] <= k) ++cntNum;
+            if(v[i - cntLess - 1] <= k) --cntNum;
+            ans = max(ans, cntNum);
+        }
+        cout << cntLess - ans << endl;
     }
 }

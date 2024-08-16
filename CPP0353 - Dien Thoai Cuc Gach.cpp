@@ -15,6 +15,7 @@
 using namespace std;
 
 string traVe(char c){
+    c = toupper(c);
     if(c == 'A' || c == 'B' || c == 'C') return "2";
     else if(c == 'D' || c == 'E' || c == 'F') return "3";
     else if(c == 'G' || c == 'H' || c == 'I') return "4";
@@ -22,11 +23,15 @@ string traVe(char c){
     else if(c == 'M' || c == 'N' || c == 'O') return "6";
     else if(c == 'P' || c == 'Q' || c == 'R' || c == 'S') return "7";
     else if(c == 'T' || c == 'U' || c == 'V') return "8";
-    return "9";
+    else if(c == 'W' || c == 'X' || c == 'Y' || c == 'Z') return "9";
 }
 
 string check(string s){
-    foru(i, 0, (s.size() - 1) / 2 - (s.size() & 1)) if(s[i] != s[s.size() - 1 - i]) return "NO\n";
+    int l = 0, r = s.size() - 1;
+    while(l < r){
+        if(s[l] != s[r]) return "NO\n";
+        ++l; --r;
+    }
     return "YES\n";
 }
 
@@ -38,7 +43,6 @@ int main(){
         string s; cin >> s;
         string ans = "";
         for(auto &c : s){
-            c = toupper(c);
             ans += traVe(c);
         }
         cout << check(ans);

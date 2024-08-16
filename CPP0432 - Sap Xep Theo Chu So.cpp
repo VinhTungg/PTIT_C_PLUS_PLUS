@@ -14,8 +14,8 @@
 
 using namespace std;
 
-bool cmp(pair<int, int> a, pair<int, int> b){
-    return a.fi < b.fi;
+bool cmp(string a, string b){
+    return a + b > b + a;
 }
 
 int main(){
@@ -23,15 +23,11 @@ int main(){
     int t = 1;
     cin >> t;
     while(t--){
-        int n, x;
-        cin >> n >> x;
-        vector<pair<int, int>> v(n);
-        for(auto &num : v) {
-            cin >> num.second;
-            num.first = abs(x - num.second);
-        }
-        stable_sort(all(v), cmp);
-        for(auto &num : v) cout << num.second << ' ';
+        int n; cin >> n;
+        vector<string> v(n);
+        for(auto &s : v) cin >> s;
+        sort(all(v), cmp);
+        for(auto &ans : v) cout << ans;
         cout << endl;
     }
 }

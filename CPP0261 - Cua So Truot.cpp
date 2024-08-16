@@ -22,19 +22,16 @@ int main(){
         int n, m;
         cin >> n;
         int a[n + 5][n + 5] = {};
-        foru(i, 1, n){
-            foru(j, 1, n) cin >> a[i][j];
+        foru(i, 0, n - 1){
+            foru(j, 0, n - 1) cin >> a[i][j];
         }
         cin >> m;
         int b[m + 5][m + 5] = {};
-        foru(i, 1, m) foru(j, 1, m) cin >> b[i][j];
+        foru(i, 0, m - 1) foru(j, 0, m - 1) cin >> b[i][j];
         if(n % m == 0){
-            foru(i, 1, n){
-                foru(j, 1, n){
-                    int idxi = i, idxj = j;
-                    if(idxi > m) idxi /= m;
-                    if(idxj > m) idxj /= m;
-                    a[i][j] *= b[idxi][idxj];
+            foru(i, 0, n - 1){
+                foru(j, 0, n - 1){
+                    a[i][j] *= b[i % m][j % m];
                     cout << a[i][j] << ' ';
                 }
                 cout << endl;

@@ -29,6 +29,7 @@ int main(){
         else{
             ford(i, s.size() - 1, diem_gay){
                 if(s[i] < s[diem_gay]){
+                    while(s[i] == s[i - 1]) --i;
                     swap(s[i], s[diem_gay]);
                     break;
                 }

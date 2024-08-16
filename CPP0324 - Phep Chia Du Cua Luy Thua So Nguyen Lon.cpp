@@ -16,11 +16,10 @@ using namespace std;
 
 ll binPow(ll a, ll b, ll m){
     if(b == 0) return 1;
-    if(b == 1) return a;
     ll res = binPow(a, b / 2, m);
-    if(b & 1) res = (res * res * a) % m;
-    else res = (res * res) % m;
-    return res % m;
+    (res *= res) %= m;
+    if(b & 1) (res *= a) %= m;
+    return res;
 }
 
 ll ChiaDu(string s, ll m){
