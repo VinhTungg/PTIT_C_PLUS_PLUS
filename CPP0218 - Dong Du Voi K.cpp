@@ -14,26 +14,34 @@
 
 using namespace std;
 
+int check(int n, vector<int> &a){
+    foru(i, 1, n - 1){
+        a[i] = abs(a[i] - a[0]);
+    }
+    a[0] = 0;
+    int du = a[0];
+    foru(i, 0, n - 1){
+        du = __gcd(du, a[i]);
+    }
+    return du;
+}
+
 int main(){
     boost;
-    int t = 1;
+    int t = 1; 
     cin >> t;
     while(t--){
-        int n, k;
-        cin >> n >> k;
+        int n;
+        cin >> n;
         vector<int> v(n);
-        int cntLess = 0;
-        for(auto &num : v){
-            cin >> num;
-            if(num <= k) ++cntLess;
-        }
-        int cntNum = 0;
-        foru(i, 0, cntLess - 1) if(v[i] > k) ++cntNum;
-        int ans = cntNum;
-        foru(i, cntLess, v.size() - 1){
-            if(v[i] > k) ++cntNum;
-            if(v[i - cntLess ] > k) --cntNum;
-            ans = min(ans, cntNum);
+        for(auto &num : v) cin >> num;
+        int du = check(n, v);
+        int ans = 0;
+        for(int i = 1; i <= sqrt(du); ++i){
+            if(du % i == 0){
+                ans += 2;
+                if(i * i == du) ans--;
+            } 
         }
         cout << ans << endl;
     }

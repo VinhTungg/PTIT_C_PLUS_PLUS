@@ -13,28 +13,29 @@
 #define MOD 1000000007
 
 using namespace std;
+int n, k, a[21];
+vector<bool> used(21, true);
+
+void Try(int i){
+    foru(j, i, n){
+        if(a[i - 1] < j){
+            a[i] = j;
+            if(i == k){
+                foru(u, 1, k){
+                    cout << a[u];
+                }
+                cout << ' ';
+            }else Try(i + 1);
+        }
+    }
+}
 
 int main(){
     boost;
-    int t = 1;
-    cin >> t;
+    int t; cin >> t;
     while(t--){
-        int n;
-        cin >> n;
-        int a[n + 1];
-        foru(i, 1, n) cin >> a[i];
-        int cnt = 0;
-        foru(i, 1, n){
-            if(!a[i]) ++cnt;
-            if(a[i]){
-                if(i < n && a[i] == a[i + 1]){
-                    a[i] *= 2;
-                    a[i + 1] = 0;
-                }
-                cout << a[i] << ' ';
-            }
-        }
-        while(cnt--) cout << "0 ";
+        cin >> n >> k;
+        Try(1);
         cout << endl;
     }
 }

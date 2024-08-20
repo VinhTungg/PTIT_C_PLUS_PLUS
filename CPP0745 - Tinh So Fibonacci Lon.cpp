@@ -13,25 +13,21 @@
 #define MOD 1000000007
 
 using namespace std;
+ll F[1001];
+
+void init(){
+    F[0] = 0; F[1] = 1;
+    foru(i, 2, 1000){
+        F[i] = (F[i - 1] + F[i - 2]) % MOD;
+    }
+}
 
 int main(){
     boost;
-    int t = 1;
-    cin >> t;
+    int t; cin >> t;
+    init();
     while(t--){
         int n; cin >> n;
-        ll v[n];
-        for(auto &num : v) cin >> num;
-        sort(v, v + n);
-        string ans = "NO\n";
-        foru(i, 0, n - 3){
-            foru(j, i + 1, n - 2){
-                ll canh = sqrt(v[i] * v[i] + v[j] * v[j]);
-                if(canh * canh == v[i] * v[i] + v[j] * v[j]){
-                    if(binary_search(v + j + 1, v + n, canh)) ans = "YES\n";
-                }
-            }
-        }
-        cout << ans;
+        cout << F[n] << endl;
     }
 }

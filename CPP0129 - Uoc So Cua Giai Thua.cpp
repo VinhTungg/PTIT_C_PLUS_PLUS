@@ -12,29 +12,23 @@
 #define all(a) a.begin(), a.end()
 #define MOD 1000000007
 
-using namespace std;
+using namespace std; 
 
 int main(){
     boost;
-    int t = 1;
+    int t = 1; 
     cin >> t;
     while(t--){
-        int n;
-        cin >> n;
-        int a[n + 1];
-        foru(i, 1, n) cin >> a[i];
-        int cnt = 0;
-        foru(i, 1, n){
-            if(!a[i]) ++cnt;
-            if(a[i]){
-                if(i < n && a[i] == a[i + 1]){
-                    a[i] *= 2;
-                    a[i + 1] = 0;
-                }
-                cout << a[i] << ' ';
+        int n, p;
+        cin >> n >> p;
+        int x = 0;
+        foru(i, 2, n){
+            int tmp = i;
+            while(tmp % p == 0){
+                ++x;
+                tmp /= p;   
             }
         }
-        while(cnt--) cout << "0 ";
-        cout << endl;
+        cout << x << endl;
     }
 }

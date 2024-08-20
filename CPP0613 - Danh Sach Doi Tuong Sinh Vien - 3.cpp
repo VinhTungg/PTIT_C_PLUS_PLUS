@@ -13,7 +13,7 @@
 #define MOD 1000000007
 
 using namespace std;
-
+int cnt = 1;
 void chuanhoa(string &s){
     s[0] = toupper(s[0]);
     foru(i, 1, s.size() - 1) s[i] = tolower(s[i]);
@@ -25,7 +25,7 @@ class SinhVien{
         int ngay, thang, nam, ma;
         float gpa;
         friend istream& operator >> (istream& in, SinhVien &A){
-            in.ignore();
+            scanf("\n");
             string tmp;
             getline(in, tmp);
             A.name = "";
@@ -38,6 +38,7 @@ class SinhVien{
             in >> A.classes;
             scanf("%d/%d/%d", &A.ngay, &A.thang, &A.nam);
             in >> A.gpa;
+            A.ma = cnt++;
             return in;
         }
         friend ostream& operator << (ostream& out, SinhVien A){
@@ -58,7 +59,6 @@ int main(){
     cin >> N;
     for(i=0;i<N;i++){
         cin >> ds[i];
-        ds[i].ma = i + 1;
     }
     sapxep(ds, N);
     for(i=0;i<N;i++){

@@ -14,27 +14,29 @@
 
 using namespace std;
 
+ll binPow(ll a, ll b){
+    if(b == 0) return 1;
+    ll res = binPow(a, b / 2);
+    (res *= res) %= MOD;
+    if(b & 1) (res *= a) %= MOD;
+    return res;
+}
+
 int main(){
     boost;
-    int t = 1;
+    int t = 1; 
     cin >> t;
     while(t--){
         int n;
         cin >> n;
-        int a[n + 1];
-        foru(i, 1, n) cin >> a[i];
-        int cnt = 0;
-        foru(i, 1, n){
-            if(!a[i]) ++cnt;
-            if(a[i]){
-                if(i < n && a[i] == a[i + 1]){
-                    a[i] *= 2;
-                    a[i + 1] = 0;
-                }
-                cout << a[i] << ' ';
-            }
+        ll a[n];
+        for(auto &num : a) cin >> num;
+        ll uoc = a[0];
+        foru(i, 1, n - 1) uoc = __gcd(uoc, a[i]);
+        ll ans = 1;
+        foru(i, 0, n - 1){
+            (ans *= binPow(a[i], uoc)) %= MOD;
         }
-        while(cnt--) cout << "0 ";
-        cout << endl;
-    }
+        cout << ans << endl;
+    } 
 }

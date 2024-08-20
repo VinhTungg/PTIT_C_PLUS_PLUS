@@ -13,25 +13,22 @@
 #define MOD 1000000007
 
 using namespace std;
+ll dp[1005];
 
 int main(){
     boost;
-    int t = 1;
+    int t = 1; 
     cin >> t;
     while(t--){
         int n; cin >> n;
-        ll v[n];
-        for(auto &num : v) cin >> num;
-        sort(v, v + n);
-        string ans = "NO\n";
-        foru(i, 0, n - 3){
-            foru(j, i + 1, n - 2){
-                ll canh = sqrt(v[i] * v[i] + v[j] * v[j]);
-                if(canh * canh == v[i] * v[i] + v[j] * v[j]){
-                    if(binary_search(v + j + 1, v + n, canh)) ans = "YES\n";
-                }
+        ll a[n];
+        for(auto &x : a) cin >> x;
+        foru(i, 0, n - 1){
+            dp[i] = a[i];
+            foru(j, 0, i - 1){
+                if(a[j] < a[i]) dp[i] = max(dp[i], dp[j] + a[i]);
             }
         }
-        cout << ans;
+        cout << *max_element(dp, dp + n) << endl;
     }
 }

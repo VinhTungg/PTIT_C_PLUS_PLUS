@@ -13,43 +13,52 @@
 #define MOD 1000000007
 
 using namespace std;
+int cnt = 0;
 
 struct NhanVien{
-    string name, sex, address, id;
-    int ngaysinh, thangsinh, namsinh, ngayky, thangky, namky, ma;
+    string name, sex, address, id, thue, bd, ngaysinh, thangsinh, namsinh, ma;
 };
 
-void nhap (NhanVien ds[], int n){
-    foru(i, 1, n){
-        cin.ignore();
-        getline(cin, ds[i].name);
-        cin >> ds[i].sex;
-        scanf("%d/%d/%d\n", &ds[i].ngaysinh, &ds[i].thangsinh, &ds[i].namsinh);
-        getline(cin, ds[i].address);
-        cin >> ds[i].id;
-        scanf("%d/%d/%d", &ds[i].ngayky, &ds[i].thangky, &ds[i].namky);
-        ds[i].ma = i;
-    }
+void nhap(NhanVien &A){
+    ++cnt;
+    cin.ignore();
+    if(cnt < 10) A.ma = "0000" + to_string(cnt);
+    else A.ma = "000" + to_string(cnt);
+    getline(cin, A.name);
+    getline(cin, A.sex);
+    getline(cin, A.bd);
+    stringstream ss(A.bd);
+    getline(ss, A.thangsinh, '/');
+    getline(ss, A.ngaysinh, '/');
+    getline(ss, A.namsinh, '/');
+    getline(cin, A.address);
+    getline(cin, A.id);
+    cin >> A.thue;
 }
 
 void sapxep(NhanVien ds[], int n){
-    sort(ds + 1, ds + n + 1, [](NhanVien a, NhanVien b){
-        if(a.namsinh != b.namsinh) return a.namsinh < b.namsinh;
-        else return (a.thangsinh != b.thangsinh) ? a.thangsinh < b.thangsinh : a.ngaysinh < b.ngaysinh;
+    sort(ds, ds + n, [](NhanVien &a, NhanVien &b){
+        if(a.namsinh > b.namsinh) return 0;
+        if(a.namsinh < b.namsinh) return 1;
+        if(a.thangsinh > b.thangsinh) return 0;
+        if(a.thangsinh < b.thangsinh) return 1;
+        if(a.ngaysinh > b.ngaysinh) return 0;
+    return 1;
     });
 }
 
-void in (NhanVien ds[], int n){
-    foru(i, 1, n){
-        cout << setfill('0') << setw(5) << ds[i].ma << ' ' << ds[i].name << ' ' << ds[i].sex << ' ' << setfill('0') << setw(2) << right << ds[i].ngaysinh << '/' << setfill('0') << setw(2) << right << ds[i].thangsinh << '/' << setfill('0') << setw(4) << right << ds[i].namsinh << ' ';
-        cout << ds[i].address << ' ' << ds[i].id << ' ' << setfill('0') << setw(2) << right << ds[i].ngayky << '/' << setfill('0') << setw(2) << right << ds[i].thangky << '/' << setfill('0') << setw(4) << right << ds[i].namky << endl;
+void inds(NhanVien ds[], int n){
+    foru(i, 0, n - 1){
+        cout << ds[i].ma << ' ' << ds[i].name << ' ' << ds[i].sex << ' ' << ds[i].bd << ' ' << ds[i].address << ' ' << ds[i].id << ' ' << ds[i].thue << endl;
     }
 }
 
 int main(){
-    struct NhanVien ds[105];
-    int n; cin >> n;
-    nhap(ds, n);
-    sapxep(ds, n);
-    in(ds, n);
+    struct NhanVien ds[50];
+    int N,i;
+    cin >> N;
+    for(i = 0; i < N; i++) nhap(ds[i]);
+    sapxep(ds, N);
+    inds(ds, N);
+    return 0;
 }   

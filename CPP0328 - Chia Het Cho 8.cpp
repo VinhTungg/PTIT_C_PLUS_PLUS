@@ -14,27 +14,25 @@
 
 using namespace std;
 
+int solve(string s, int k){
+    int ans = 0;
+    foru(i, 0, s.size() - 1){
+        int n = 0;
+        foru(j, i, s.size() - 1){
+            n = n * 10 + (s[j] - '0');
+            n %= k;
+            if(n == 0) ++ans;
+        }
+    }
+    return ans;
+}
+
 int main(){
     boost;
-    int t = 1;
+    int t = 1; 
     cin >> t;
     while(t--){
-        int n;
-        cin >> n;
-        int a[n + 1];
-        foru(i, 1, n) cin >> a[i];
-        int cnt = 0;
-        foru(i, 1, n){
-            if(!a[i]) ++cnt;
-            if(a[i]){
-                if(i < n && a[i] == a[i + 1]){
-                    a[i] *= 2;
-                    a[i + 1] = 0;
-                }
-                cout << a[i] << ' ';
-            }
-        }
-        while(cnt--) cout << "0 ";
-        cout << endl;
+        string s; cin >> s;
+        cout << solve(s, 8) - solve(s, 24) << endl;
     }
 }

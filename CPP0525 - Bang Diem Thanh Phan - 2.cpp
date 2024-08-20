@@ -22,7 +22,7 @@ struct DiemThanhPhan{
 void nhap(DiemThanhPhan ds[], int n){
     foru(i, 1, n){
         cin >> ds[i].ma;
-        cin.ignore();
+        scanf("\n");
         getline(cin, ds[i].ten);
         cin >> ds[i].lop;
         cin >> ds[i].diem1 >> ds[i].diem2 >> ds[i].diem3;

@@ -33,9 +33,9 @@ class SinhVien{
 };
 
 int main(){
-    SinhVien ds[50];
     int N,i;
     cin >> N;
+    SinhVien ds[N];
     map<string, vector<SinhVien>> mp;
     for(i = 0; i < N; i++){
         cin >> ds[i];

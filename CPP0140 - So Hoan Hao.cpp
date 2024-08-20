@@ -14,27 +14,29 @@
 
 using namespace std;
 
+int check(ll n){
+    if(n > 1e12) return 0;
+    int i = 2;
+    ll ans = 1;
+    double tmp = sqrt(n);
+    while(i < tmp){
+        if(!(n % i)){
+            ans += i;
+            ans += (n / i);
+        }
+        ++i;
+    }
+    tmp = (int)tmp;
+    if(tmp * tmp == n) ans += tmp;
+    return ans == n;
+}
+
 int main(){
     boost;
-    int t = 1;
+    int t = 1; 
     cin >> t;
     while(t--){
-        int n;
-        cin >> n;
-        int a[n + 1];
-        foru(i, 1, n) cin >> a[i];
-        int cnt = 0;
-        foru(i, 1, n){
-            if(!a[i]) ++cnt;
-            if(a[i]){
-                if(i < n && a[i] == a[i + 1]){
-                    a[i] *= 2;
-                    a[i + 1] = 0;
-                }
-                cout << a[i] << ' ';
-            }
-        }
-        while(cnt--) cout << "0 ";
-        cout << endl;
+        ll n; cin >> n;
+        cout << check(n) << endl;
     }
 }

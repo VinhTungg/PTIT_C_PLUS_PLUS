@@ -13,28 +13,25 @@
 #define MOD 1000000007
 
 using namespace std;
+int a[21][21];
+int n, k;
+int ans;
+
+void Try(int i, int j, int sum){
+    if(i == n && j == n && sum == k) ++ans;
+    if(i >= 1 and i <= n) Try(i + 1, j, sum + a[i + 1][j]);
+    if(j >= 1 and j <= n) Try(i, j + 1, sum + a[i][j + 1]);
+}
 
 int main(){
     boost;
-    int t = 1;
+    int t = 1; 
     cin >> t;
     while(t--){
-        int n;
-        cin >> n;
-        int a[n + 1];
-        foru(i, 1, n) cin >> a[i];
-        int cnt = 0;
-        foru(i, 1, n){
-            if(!a[i]) ++cnt;
-            if(a[i]){
-                if(i < n && a[i] == a[i + 1]){
-                    a[i] *= 2;
-                    a[i + 1] = 0;
-                }
-                cout << a[i] << ' ';
-            }
-        }
-        while(cnt--) cout << "0 ";
-        cout << endl;
+        cin >> n >> k;
+        ans = 0;
+        foru(i, 1, n) foru(j, 1, n) cin >> a[i][j];
+        Try(1, 1, a[1][1]);
+        cout << ans << endl;
     }
 }

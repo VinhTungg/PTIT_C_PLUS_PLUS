@@ -13,6 +13,7 @@
 #define MOD 1000000007
 
 using namespace std;
+int cnt = 1;
 
 class SinhVien{
     public:
@@ -25,6 +26,7 @@ class SinhVien{
             in >> A.classes;
             scanf("%d/%d/%d", &A.ngay, &A.thang, &A.nam);
             in >> A.gpa;
+            A.ma = cnt++;
             return in;
         }
         friend ostream& operator << (ostream& out, SinhVien A){
@@ -40,7 +42,6 @@ int main(){
     cin >> N;
     for(i=0;i<N;i++){
         cin >> ds[i];
-        ds[i].ma = i + 1;
     }
     for(i=0;i<N;i++){
         cout << ds[i];

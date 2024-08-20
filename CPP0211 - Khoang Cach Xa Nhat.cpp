@@ -16,25 +16,25 @@ using namespace std;
 
 int main(){
     boost;
-    int t = 1;
+    int t = 1; 
     cin >> t;
     while(t--){
         int n;
-        cin >> n;
-        int a[n + 1];
-        foru(i, 1, n) cin >> a[i];
+        cin >> n; 
+        int a[n]; 
+        for(int &x : a) cin >> x; 
+        sort(a, a + n); 
+        int x = a[n - 1] - a[0]; 
         int cnt = 0;
-        foru(i, 1, n){
-            if(!a[i]) ++cnt;
-            if(a[i]){
-                if(i < n && a[i] == a[i + 1]){
-                    a[i] *= 2;
-                    a[i + 1] = 0;
-                }
-                cout << a[i] << ' ';
-            }
-        }
-        while(cnt--) cout << "0 ";
-        cout << endl;
-    }
+        for(int i = 1; i <= x; i++){
+            int ok = 1; 
+            for(int j = 1; j < n; j++){
+                if((a[j] - a[0]) % i != 0){
+                    ok = 0; 
+                    break; 
+                } 
+            } if(ok) cnt++; 
+        } 
+        cout << cnt << endl; 
+    } 
 }

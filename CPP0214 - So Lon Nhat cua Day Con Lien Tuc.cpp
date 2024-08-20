@@ -16,22 +16,25 @@ using namespace std;
 
 int main(){
     boost;
-    int t = 1;
+    int t = 1; 
     cin >> t;
     while(t--){
-        int n; cin >> n;
-        ll v[n];
-        for(auto &num : v) cin >> num;
-        sort(v, v + n);
-        string ans = "NO\n";
-        foru(i, 0, n - 3){
-            foru(j, i + 1, n - 2){
-                ll canh = sqrt(v[i] * v[i] + v[j] * v[j]);
-                if(canh * canh == v[i] * v[i] + v[j] * v[j]){
-                    if(binary_search(v + j + 1, v + n, canh)) ans = "YES\n";
-                }
-            }
+        int n, k;
+        cin >> n >> k;
+        int a[n];
+        for(auto &x : a) cin >> x;
+        int l = 0, r = k - 1;
+        map<int, int> mp;
+        foru(i, 0, r) mp[a[i]]++;
+        while(1){
+            cout << mp.rbegin()->first << ' ';
+            ++r;
+            mp[a[r]]++;
+            mp[a[l]]--;
+            if(!mp[a[l]]) mp.erase(a[l]);
+            ++l;
+            if(l > n - k) break;
         }
-        cout << ans;
+        cout << endl;
     }
 }

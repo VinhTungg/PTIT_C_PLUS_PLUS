@@ -17,12 +17,7 @@ class GiangVien{
 		int stt;
 		friend istream& operator >> (istream&  in, GiangVien& a){
 			string x;
-			getline(in, x);
-			a.ten = x;
-			stringstream s(x);
-			while(s >> x){
-				a.tendau = x;
-			}
+			getline(in, a.ten);
 			getline(in, x);
 			a.bomon = "";
 			stringstream ss(x);
@@ -38,11 +33,6 @@ class GiangVien{
 		}
 };
 
-bool cmp(GiangVien a, GiangVien b){
-	if(a.tendau != b.tendau) return a.tendau < b.tendau;
-	return a.stt < b.stt;
-}
-
 int main(){
 	boost
 	int n;
@@ -55,7 +45,6 @@ int main(){
 		a.stt = i + 1;
 		v.pb(a);
 	}
-	sort(v.begin(), v.end(), cmp);
 	int q;
 	cin >> q;
 	while(q--){
@@ -63,15 +52,12 @@ int main(){
 		cout << "DANH SACH GIANG VIEN THEO TU KHOA " << s << ":\n";
 		for(int i = 0; i < s.sz();++i) s[i] = tolower(s[i]);
 		string tmp;
-		bool check = true;
 		for(auto &it : v){
 			tmp = it.ten;
 			transform(tmp.begin(), tmp.end(), tmp.begin(), ::tolower);
 			if(tmp.find(s) != -1){
-				check = false;
 				cout << it;
 			}
 		}
-		if(check) cout << "Khong tim thay\n";
 	}
 }

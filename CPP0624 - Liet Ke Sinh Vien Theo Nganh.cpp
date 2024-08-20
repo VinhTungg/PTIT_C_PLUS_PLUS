@@ -16,18 +16,18 @@ using namespace std;
 
 class SinhVien{
     public:
-        string masv, ten, lop, email, nganh;
+        string msv, ten, lop, email, nganh;
         friend istream& operator >> (istream& in, SinhVien &A){
-            in >> A.masv;
+            in >> A.msv;
             in.ignore();
             getline(in, A.ten);
             in >> A.lop;
             in >> A.email;
-            A.nganh = A.masv.substr(3, 4);
+            A.nganh = A.msv.substr(3, 4);
             return in;
         }
         friend ostream& operator << (ostream& out, SinhVien A){
-            out << A.masv << ' ' << A.ten << ' ' << A.lop << ' ' << A.email << endl;
+            out << A.msv << ' ' << A.ten << ' ' << A.lop << ' ' << A.email << endl;
             return out;
         }
 };
@@ -41,13 +41,11 @@ string trave(string s){
 }
 
 int main(){
-    SinhVien ds[50];
     int N,i;
     cin >> N;
-    map<string, vector<SinhVien>> mp;
+    SinhVien ds[N];
     for(i = 0; i < N; i++){
         cin >> ds[i];
-        mp[ds[i].nganh].push_back(ds[i]);
     }
     int truyVan; cin >> truyVan;
     cin.ignore();
@@ -56,6 +54,9 @@ int main(){
         string tmp = trave(s);
         transform(all(s), s.begin(), ::toupper);
         cout << "DANH SACH SINH VIEN NGANH " << s << ":\n";
-        for(auto &ans : mp[tmp]) cout << ans;
+        foru(i, 0, N - 1){
+            if(ds[i].lop[0] == 'E' && (ds[i].msv[5] == 'C' || ds[i].msv[5] == 'A')) continue;
+            if(s[0] == ds[i].msv[5]) cout << ds[i];
+        }
     }
 }

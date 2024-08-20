@@ -19,14 +19,22 @@ int main(){
     int t = 1;
     cin >> t;
     while(t--){
-        int n, k; cin >> n >> k;
-        vector<ll> v(n);
+        int n, k, x; cin >> n;
+        vector<int> v(n);
         for(auto &num : v) cin >> num;
-        sort(all(v));
-        int check = -1;
-        foru(i, 0, n - 1){
-            if(binary_search(v.begin(), v.end(), k + v[i])) check = 1;
+        cin >> k >> x;
+        vector<int> ans;
+        int tmp = lower_bound(all(v), x) - v.begin();
+        int l , r;
+        if(v[tmp] == x){
+            l = tmp - 1;
+            r = tmp + 1;
+        }else{
+            l = tmp - 1;
+            r = tmp;
         }
-        cout << check << endl;
+        ford(i, k / 2 - 1, 0) cout << v[l - i] << ' ';
+        foru(i, 0, k / 2 - 1) cout << v[r + i] << ' ';
+        cout << endl;
     }
 }

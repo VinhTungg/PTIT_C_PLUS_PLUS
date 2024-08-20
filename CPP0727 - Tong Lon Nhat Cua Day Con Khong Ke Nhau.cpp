@@ -16,22 +16,16 @@ using namespace std;
 
 int main(){
     boost;
-    int t = 1;
-    cin >> t;
+    int t; cin >> t;
     while(t--){
         int n; cin >> n;
-        ll v[n];
-        for(auto &num : v) cin >> num;
-        sort(v, v + n);
-        string ans = "NO\n";
-        foru(i, 0, n - 3){
-            foru(j, i + 1, n - 2){
-                ll canh = sqrt(v[i] * v[i] + v[j] * v[j]);
-                if(canh * canh == v[i] * v[i] + v[j] * v[j]){
-                    if(binary_search(v + j + 1, v + n, canh)) ans = "YES\n";
-                }
-            }
+        vector<ll> v(n + 1);
+        foru(i, 1, n) cin >> v[i];
+        ll dp[n];
+        dp[0] = 0; dp[1] = v[1];
+        foru(i, 2, n){
+            dp[i] = max(dp[i - 2] + v[i], dp[i - 1]);
         }
-        cout << ans;
+        cout << dp[n] << endl;
     }
 }

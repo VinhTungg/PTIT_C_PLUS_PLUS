@@ -21,8 +21,23 @@ int main(){
     while(t--){
         int n, m;
         cin >> n >> m;
-        int a[n + 5][m + 5];
-        foru(i, 0, n - 1) foru(j, 0, m - 1) cin >> a[i][j];
-        
+        int a[n + 5][m + 5] = {}, sum[n + 5][m + 5] = {};
+        foru(i, 1, n) foru(j, 1, m){
+            cin >> a[i][j];
+            if(a[i][j]){
+                if(sum[i - 1][j]) sum[i][j] = (sum[i - 1][j] + a[i][j]);
+                else sum[i][j] = a[i][j];
+            }
+        }
+        int ans = 0, tmp;
+        foru(i, 1, n) {
+            sort(sum[i] + 1, sum[i] + m + 1, greater<int>());
+            tmp = INT_MAX;
+            foru(j, 1, m){
+                tmp = min(tmp, sum[i][j]);
+                ans = max(ans, tmp * j);
+            }
+        }
+        cout << ans << endl;
     }
 }

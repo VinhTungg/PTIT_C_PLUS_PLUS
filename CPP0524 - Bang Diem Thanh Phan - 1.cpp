@@ -14,38 +14,39 @@
 
 using namespace std;
 
-struct DiemThanhPhan{
-    string ma, ten, lop, macuoi;
-    double diem1, diem2, diem3;
+struct SinhVien{
+    string ma, ten, lop;
+    float diem1, diem2, diem3;
 };
 
-void nhap(DiemThanhPhan ds[], int n){
-    foru(i, 1, n){
-        cin >> ds[i].ma;
-        cin.ignore();
-        getline(cin, ds[i].ten);
-        cin >> ds[i].lop;
-        cin >> ds[i].diem1 >> ds[i].diem2 >> ds[i].diem3;
-        ds[i].macuoi = ds[i].ma[7] + ds[i].ma[8] + ds[i].ma[9];
-    }
+void nhap(SinhVien &A){
+    cin >> A.ma;
+    scanf("\n");
+    getline(cin, A.ten);
+    cin >> A.lop;
+    cin >> A.diem1 >> A.diem2 >> A.diem3;
 }
 
-void sapxep(DiemThanhPhan ds[], int n){
-    sort(ds + 1, ds + n + 1, [](DiemThanhPhan a, DiemThanhPhan b){
-        return a.macuoi < b.macuoi;
+void sap_xep(SinhVien ds[], int n){
+    sort(ds, ds + n, [](SinhVien a, SinhVien b){
+        return a.ma < b.ma;
     });
 }
 
-void in(DiemThanhPhan ds[], int n){
-    foru(i, 1, n){
-        cout << i << ' ' << ds[i].ma << ' ' << ds[i].ten << ' ' << ds[i].lop << ' ' << fixed << setprecision(1) << ds[i].diem1 << ' ' << ds[i].diem2 << ' ' << ds[i].diem3 << endl;
+void in_ds(SinhVien ds[], int n){
+    foru(i, 0, n - 1){
+        cout << i + 1 << ' ' << ds[i].ma << ' ' << ds[i].ten << ' ' << ds[i].lop << ' ' << fixed << setprecision(1) << ds[i].diem1 << ' ' << ds[i].diem2 << ' ' << ds[i].diem3 << endl;
     }
 }
 
 int main(){
-    struct DiemThanhPhan ds[105];
-    int n; cin >> n;
-    nhap(ds, n);
-    sapxep(ds, n);
-    in(ds, n);
+    int n;
+    cin >> n;
+    struct SinhVien *ds = new SinhVien[n];
+    for(int i = 0; i < n; i++) {
+    	nhap(ds[i]);
+	}
+	sap_xep(ds, n);
+    in_ds(ds,n);
+    return 0;
 }   

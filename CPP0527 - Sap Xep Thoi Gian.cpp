@@ -36,7 +36,7 @@ void in(ThoiGian ds[], int n){
 }
 
 int main(){
-    struct ThoiGian ds[105];
+    struct ThoiGian ds[5005];
     int n; cin >> n;
     nhap(ds, n);
     sapxep(ds, n);

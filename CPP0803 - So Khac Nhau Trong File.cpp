@@ -15,26 +15,16 @@
 using namespace std;
 
 int main(){
+    freopen("DATA.in", "r", stdin);
     boost;
-    int t = 1;
-    cin >> t;
+    int t = 1; 
+    //cin >> t;
     while(t--){
+        map<int, int> mp;
         int n;
-        cin >> n;
-        int a[n + 1];
-        foru(i, 1, n) cin >> a[i];
-        int cnt = 0;
-        foru(i, 1, n){
-            if(!a[i]) ++cnt;
-            if(a[i]){
-                if(i < n && a[i] == a[i + 1]){
-                    a[i] *= 2;
-                    a[i + 1] = 0;
-                }
-                cout << a[i] << ' ';
-            }
+        while(cin >> n){
+            mp[n]++;
         }
-        while(cnt--) cout << "0 ";
-        cout << endl;
+        for(auto &x : mp) cout << x.fi << ' ' << x.se << endl;
     }
 }
