@@ -34,7 +34,7 @@ int main() {
             int z = 0;
             int sumChinh = 0, sumPhu = 0;
             while(z <= min(i, j)){
-                int x = (Chinh[i][j] - Chinh[i - z][j - z]
+                int x = (Chinh[i][j] - Chinh[i - z][j - z]);
             }
         }
     }
