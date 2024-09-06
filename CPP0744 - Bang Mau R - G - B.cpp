@@ -13,32 +13,30 @@
 #define MOD 1000000007
 
 using namespace std;
+ll GT[30] = {};
 
-long long combination(int n, int k) {
-    ll res = 1;
-    for(int i = 1; i <= k; ++i, --n){
-        (res *= n) /= i;
+void init(){
+    GT[0] = 1;
+    for(int i = 1; i <= 30; ++i){
+        GT[i] = GT[i - 1] * i;
     }
-    return res;
-}
-
-long long calc(int n, int take, int p1, int p2) {
-    ll res = 0;
-    for(int i = take; i <= n - p1 - p2; ++i){
-        res += combination(n, i);
-        res += pow(3, n - res);
-    }
-    return res;
 }
 
 int main() {
     int t;
     cin >> t;
+    init();
     while (t--) {
         int n, r, b, g;
         cin >> n >> r >> b >> g;
         ll ans = 0;
-        ans = calc(n, r, b, g) + calc(n, b, r, g) + calc(n, g, b, r);
+        int rest = n - r - b - g;
+        for(int i = 0; i <= rest; ++i){
+            for(int j = 0; j <= rest - i; ++j){
+                int z = rest - i - j;
+                ans = ans + GT[n] / (GT[i + r] * GT[j + b] * GT[z + g]);
+            }
+        }
         cout << ans << endl;
     }
 }
