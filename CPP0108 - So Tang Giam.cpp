@@ -13,22 +13,11 @@
 #define MOD 1000000007
 
 using namespace std;
-int a[10] = {0, 0, 20, 38, 50, 38, 20, 8, 5, 0};
+int cnt;
+
 bool nt(int n){
     foru(i, 2, sqrt(n)) if(n % i == 0) return false;
     return n > 1;
-}
-
-bool checkTang(int n){
-    string s = to_string(n);
-    foru(i, 0, s.size() - 2) if(s[i] >= s[i + 1]) return false;
-    return true;
-}
-
-bool checkGiam(int n){
-    string s = to_string(n);
-    foru(i, 0, s.size() - 2) if(s[i] <= s[i + 1]) return false;
-    return true;
 }
 
 int main(){
@@ -37,12 +26,35 @@ int main(){
     cin >> t;
     while(t--){
         int n; cin >> n;
-        cout << a[n] << endl;
-        continue;
-        int cnt = 0;
-        foru(i, pow(10, n - 1), pow(10, n) - 1){
-            if(checkGiam(i) && nt(i)) ++cnt;
-            if(checkTang(i) && nt(i)) ++cnt;
+        cnt = 0;
+        queue<string> q, p;
+        for(int i = 1; i <= 9; ++i) q.push(to_string(i));
+        while(!q.empty()){
+            string tmp = q.front();
+            q.pop();
+            if(tmp.size() < n){
+                for(int i = (tmp[tmp.size() - 1] - '0') + 1; i <= 9; ++i){
+                    tmp += (i + '0');
+                    q.push(tmp);
+                    tmp.pop_back();
+                }
+            }else if(tmp.size() == n){
+                if(nt(stoll(tmp))) ++cnt;
+            }else break;
+        }
+        for(int i = 9; i >= 0; --i) p.push(to_string(i));
+        while(!p.empty()){
+            string tmp = p.front();
+            p.pop();
+            if(tmp.size() < n){
+                for(int i = (tmp[tmp.size() - 1] - '0') - 1; i >= 0; --i){
+                    tmp += (i + '0');
+                    p.push(tmp);
+                    tmp.pop_back();
+                }
+            }else if(tmp.size() == n){
+                if(nt(stoll(tmp))) ++cnt;
+            }else break;
         }
         cout << cnt << endl;
     }
