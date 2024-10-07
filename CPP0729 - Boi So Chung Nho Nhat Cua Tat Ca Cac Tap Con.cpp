@@ -2,6 +2,8 @@
 #include <vector>
 using namespace std;
 
+/////////// NOT AC
+
 // Hàm tính GCD của hai số
 int gcd(int a, int b) {
     while (b != 0) {
