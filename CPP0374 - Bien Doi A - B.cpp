@@ -20,17 +20,17 @@ int main(){
     //cin >> t;
     while(t--){
         string s; cin >> s;
-        int cnt1 = 0, cnt2 = 0;
+        int cnt1 = 0, cnt2 = 0, ans;
         foru(i, 0, s.size() - 1){
-            if(s[i] == 'A') continue;
-            else{
-                ++cnt1;
-                while(i < s.size() and s[i] == 'B'){
-                    ++cnt2;
-                    ++i;
-                }
+            if(s[i] == 'A'){
+                if(cnt1 < cnt2) cnt2 = cnt1 + 1;
+                else ++cnt2;
+            }else{
+                if(cnt1 < cnt2) ++cnt1;
+                else cnt1 = cnt2 + 1;
             }
         }
-        cout << min(cnt1 * 2 - (s[0] == 'B'), cnt2);
+        ans = min(cnt1 * 2 - (s[0] == 'B'), cnt2);
+        cout << cnt1;
     }
 }
