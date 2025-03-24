@@ -27,18 +27,18 @@ int main(){
         for(auto &x : c) cin >> x;
         int n = min({n1, n2, n3});
         int cnt1 = 0, cnt2 = 0, cnt3 = 0;
-        multiset<ll> ms;
+        set<ll> s;
         while(cnt1 < n1 and cnt2 < n2 and cnt3 < n3){
             if(a[cnt1] == b[cnt2] && b[cnt2] == c[cnt3]){
-                ms.insert(a[cnt1]);
+                s.insert(a[cnt1]);
                 ++cnt1; ++cnt2; ++cnt3;
             }
             while(a[cnt1] < b[cnt2] || a[cnt1] < c[cnt3]) ++cnt1;
             while(b[cnt2] < a[cnt1] || b[cnt2] < c[cnt3]) ++cnt2;
             while(c[cnt3] < b[cnt2] || c[cnt3] < a[cnt1]) ++cnt3;
         }
-        if(ms.empty()) cout << -1;
-        else for(auto &x : ms) cout << x << ' ';
+        if(s.empty()) cout << -1;
+        else for(auto &x : s) cout << x << ' ';
         cout << endl;
     }
 }
